@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hangman/newGame/data/provider/new_game_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'home/screen/home.dart';
 
@@ -11,13 +13,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Hangman',
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => NewGameProvider())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Hangman',
+        theme: ThemeData(
+          primarySwatch: Colors.blueGrey,
+        ),
+        home: Home(),
       ),
-      home: Home(),
     );
   }
 }
