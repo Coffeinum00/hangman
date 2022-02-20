@@ -28,7 +28,7 @@ class NewGame extends StatelessWidget {
               )),
         ],
       ),
-      body: const NewGameBody(),
+      body: NewGameBody(),
     );
   }
 }
