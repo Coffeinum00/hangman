@@ -7,9 +7,21 @@ class NewGameProvider extends ChangeNotifier {
 
   RandomWords? get randomWords => _randomWords;
 
+  int? _currentWord;
+
+  int? _mistakes = 0;
+
+  int? get mistakes => _mistakes;
+  set mistakes(int? newMistake) {
+    _mistakes = newMistake;
+    notifyListeners();
+  }
+
   _init() {
-    _randomWords = RandomWords();
+    _randomWords = RandomWords(randomWords: ['']);
     _fetchData();
+    _currentWord = 0;
+    _mistakes = 0;
   }
 // Future = jedno zapytanie do serwera i daje jedną odpowiedź
 // alternatywą jest Stream (aka RealTime), który nasłuchuje na zmiany na serwerze, gdy są zmiany to daje zmiany w aplikacji
@@ -20,7 +32,8 @@ class NewGameProvider extends ChangeNotifier {
           'https://random-word-api.herokuapp.com/word?number=10&swear=0'));
 
       _randomWords = RandomWords.fromJson(response.body);
-      print(_randomWords!.randomWords);
+
+      notifyListeners();
     } catch (error) {
       print('error');
     }
@@ -60,4 +73,10 @@ class NewGameProvider extends ChangeNotifier {
   ];
 
   List get alfabet => _alfabet;
+
+  int? get currentWord => _currentWord;
+  set currentWord(int? newIndex) {
+    _currentWord = newIndex;
+    notifyListeners();
+  }
 }
