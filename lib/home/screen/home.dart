@@ -26,6 +26,7 @@ class Home extends StatelessWidget {
             ElevatedButton(
               style: ElevatedButton.styleFrom(primary: Colors.blue[500]),
               onPressed: () {
+                Provider.of<NewGameProvider>(context, listen: false).init();
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const NewGame()));
               },
