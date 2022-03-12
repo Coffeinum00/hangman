@@ -14,13 +14,25 @@ class NewGame extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed:
+              Provider.of<NewGameProvider>(context, listen: true).timer == null
+                  ? null
+                  : () {
+                      if (Provider.of<NewGameProvider>(context, listen: false)
+                              .timer !=
+                          null) {
+                        Provider.of<NewGameProvider>(context, listen: false)
+                            .endTimer();
+                      }
+                      Navigator.pop(context);
+                    },
           icon: const Icon(Icons.arrow_left_outlined, size: 50),
         ),
-        title: const MyText(
-          text: 'Timer',
+        title: MyText(
+          text: Provider.of<NewGameProvider>(context, listen: true)
+                  .time
+                  .toString() +
+              's',
           size: 25,
         ),
         actions: [
@@ -33,7 +45,17 @@ class NewGame extends StatelessWidget {
           ),
         ],
       ),
-      body: NewGameBody(),
+      body: WillPopScope(
+          onWillPop: () async {
+            if (Provider.of<NewGameProvider>(context, listen: false).timer !=
+                null) {
+              Provider.of<NewGameProvider>(context, listen: false).endTimer();
+              return true;
+            } else {
+              return false;
+            }
+          },
+          child: NewGameBody()),
     );
   }
 }

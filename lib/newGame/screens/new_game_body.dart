@@ -26,7 +26,6 @@ class NewGameBody extends StatelessWidget {
             : Column(
                 children: [
                   const SizedBox(height: 15),
-                  Text(_passedWords.toString()),
                   Container(
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height * 1 / 3,
@@ -63,7 +62,7 @@ class NewGameBody extends StatelessWidget {
                                         text: _passedWords
                                                 .contains(e.toLowerCase())
                                             ? e
-                                            : '#$e',
+                                            : e,
                                         size: 20),
                                     Container(
                                       width: 30,
@@ -140,6 +139,7 @@ class NewGameBody extends StatelessWidget {
                   .length -
               1) {
         if (_myLocalBool) {
+          Provider.of<NewGameProvider>(context, listen: false).endTimer();
           AwesomeDialog(
             context: context,
             dialogType: DialogType.SUCCES,
@@ -163,17 +163,20 @@ class NewGameBody extends StatelessWidget {
                       1;
               Provider.of<NewGameProvider>(context, listen: false).passedWords =
                   [];
+              Provider.of<NewGameProvider>(context, listen: false).startTimer();
             },
           ).show();
         }
       } else {
         // show end game dialog close i restart
+        Provider.of<NewGameProvider>(context, listen: false).endTimer();
       }
     } else {
       Provider.of<NewGameProvider>(context, listen: false).mistakes =
           Provider.of<NewGameProvider>(context, listen: false).mistakes! + 1;
 
       if (Provider.of<NewGameProvider>(context, listen: false).mistakes! >= 6) {
+        Provider.of<NewGameProvider>(context, listen: false).endTimer();
         AwesomeDialog(
           context: context,
           dialogType: DialogType.ERROR,

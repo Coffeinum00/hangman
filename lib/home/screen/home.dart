@@ -8,6 +8,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<NewGameProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -26,9 +27,19 @@ class Home extends StatelessWidget {
             ElevatedButton(
               style: ElevatedButton.styleFrom(primary: Colors.blue[500]),
               onPressed: () {
+                if (Provider.of<NewGameProvider>(context, listen: false)
+                        .timer !=
+                    null) {
+                  Provider.of<NewGameProvider>(context, listen: false)
+                      .endTimer();
+                }
                 Provider.of<NewGameProvider>(context, listen: false).init();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const NewGame()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NewGame(),
+                  ),
+                );
               },
               child: const Text(
                 'New game',
