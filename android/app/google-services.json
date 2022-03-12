@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "586490473512",
+    "project_id": "hangman-c7c19",
+    "storage_bucket": "hangman-c7c19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586490473512:android:5cd5294de917537a16d91d",
+        "android_client_info": {
+          "package_name": "space.baxy.hangman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586490473512-hphr9kvvlc1a0mvimr0prr2ifsio7ohd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIPLl07QE0_oL9HGZmKp1mMv9cAIX3pXs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586490473512-hphr9kvvlc1a0mvimr0prr2ifsio7ohd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

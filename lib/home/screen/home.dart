@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:hangman/newGame/data/provider/new_game_provider.dart';
 import 'package:hangman/newGame/screens/new_game_screen.dart';
+import 'package:hangman/auth/sign_up.dart';
 import 'package:provider/provider.dart';
 
+import '../../auth/auth_state.dart';
+
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Provider.of<NewGameProvider>(context);
+    Provider.of<AuthState>(context);
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              Provider.of<AuthState>(context, listen: false).signOut();
+            },
+          ),
+        ],
         title: const Text(
           'Hangman The Game',
           style: TextStyle(
@@ -60,7 +72,14 @@ class Home extends StatelessWidget {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(primary: Colors.orange),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SignUpPage(),
+                  ),
+                );
+              },
               child: const Text(
                 'Log out',
                 style: TextStyle(fontFamily: 'Courgette'),
