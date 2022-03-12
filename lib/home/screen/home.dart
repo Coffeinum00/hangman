@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hangman/newGame/data/provider/new_game_provider.dart';
-import 'package:hangman/newGame/screens/new_game_screen.dart';
+
 import 'package:hangman/auth/sign_up.dart';
+import 'package:hangman/screens/leaderboard.dart';
+import 'package:hangman/screens/new_game_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../auth/auth_state.dart';
@@ -63,7 +65,14 @@ class Home extends StatelessWidget {
               child: ElevatedButton(
                 style:
                     ElevatedButton.styleFrom(primary: Colors.lightGreen[500]),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Leaderboard(),
+                    ),
+                  );
+                },
                 child: const Text(
                   'Leaderboard',
                   style: TextStyle(fontFamily: 'Courgette'),

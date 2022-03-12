@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hangman/newGame/data/provider/new_game_provider.dart';
-import 'package:hangman/newGame/screens/new_game_body.dart';
+import 'package:hangman/screens/new_game_body.dart';
+
 import 'package:hangman/widgets/text_widget.dart';
 import 'package:provider/provider.dart';
 

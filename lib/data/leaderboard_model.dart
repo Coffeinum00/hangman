@@ -1,7 +1,8 @@
-class Leaderboard {
-  Leaderboard({required this.login, required this.score, required this.time});
+class LeaderboardModel {
+  LeaderboardModel(
+      {required this.login, required this.score, required this.time});
 
-  Leaderboard.fromJson(Map<int, Object> json)
+  LeaderboardModel.fromJson(Map<String, dynamic> json)
       : this(
           login: json['login']! as String,
           score: json['score']! as int,
@@ -12,7 +13,7 @@ class Leaderboard {
   int? score;
   int? time;
 
-  Map<String, Object?> toJson() {
+  Map<String, dynamic> toJson() {
     return {
       'login': login,
       'score': score,
